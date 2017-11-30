@@ -47,7 +47,7 @@ public class hw4 {
                 case (1) :
                     System.out.println("Enter Artist name: ");
                     inputString = in.nextLine();
-                    query = "SELECT ArtistId, Title " +
+                    query = "SELECT AlbumId, Title " +
                             "FROM Album " +
                             "WHERE ArtistId = " +
                             "(SELECT ArtistId " +
@@ -61,7 +61,8 @@ public class hw4 {
                         while (results.next()) {
                             isEmpty = false;
                             String title = results.getString("Title");
-                            System.out.println(title);
+                            String albumID = results.getString("AlbumId");
+                            System.out.println(albumID + " | " + title);
                         }
             
                         if (isEmpty) {
