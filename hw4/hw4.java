@@ -5,7 +5,8 @@ public class hw4 {
     public static void main( String args[] ) {
         Scanner in = new Scanner(System.in);
         int userChoice;
-        String inputString;
+        String inputString,
+               query;
         boolean runProgram = true;
         SqlFunction sqlObject = new SqlFunction();
 
@@ -27,7 +28,14 @@ public class hw4 {
                 case (1) :
                     System.out.println("Enter Artist name: ");
                     inputString = in.nextLine();
-                    sqlObject.sqlFunction(inputString);
+                    query = "SELECT ArtistId, Title " +
+                            "FROM Album " +
+                            "WHERE ArtistId = " +
+                            "(SELECT ArtistId " +
+                            "FROM Artist " +
+                            "WHERE Name = " + "'" +  inputString + "'" + ")";
+                    sqlObject.sqlFunction(query);
+                    
                     break;
 
                 case (3) :
