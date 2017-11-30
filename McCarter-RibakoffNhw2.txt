@@ -1,0 +1,78 @@
+Nehemya McCarter-Ribakoff
+ID#: 916571687
+Kulkarni
+CSC 675 / Th 4:00PM
+3 October 2017
+
+Assignment 2
+
+QUESTION 1:
+
+sqlite> SELECT G.Name
+   ...> FROM Genre G, Track T1
+   ...> WHERE G.GenreId = T1.GenreId
+   ...> GROUP BY (SELECT COUNT(*) AS GenreFreq
+   ...> FROM Genre G
+   ...> GROUP BY G.Name
+   ...> HAVING GenreFreq <= 1)
+
+QUESTION 2:
+
+sqlite> SELECT DISTINCT T.Name
+   ...> FROM Track T, InvoiceLine L, Invoice I
+   ...> WHERE T.TrackId = L.TrackId
+   ...> AND L.InvoiceId = I.InvoiceId
+   ...> AND (I.BillingState = 'CA' OR I.BillingState = 'WA')
+
+QUESTION 3:
+
+sqlite> SELECT T.Name
+   ...> FROM Track T, InvoiceLine IL
+   ...> WHERE T.TrackId = IL.TrackId
+   ...> AND IL.Quantity > 5
+
+QUESTION 4:
+
+sqlite> SELECT T.Name
+   ...> FROM Track T1
+   ...> WHERE T1.UnitPrice < 1
+   ...> AND T1.Milliseconds > (SELECT AVG(T2.Milliseconds)
+   ...> FROM Track T2)
+
+QUESTION 5:
+
+sqlite> SELECT DISTINCT P.Name, P.PlaylistId
+   ...> FROM Playlist P, PlaylistTrack PT, InvoiceLine IL
+   ...> WHERE P.PlaylistId = PT.PlaylistID
+   ...> AND PT.TrackId <> IL.TrackId
+
+QUESTION 6:
+
+sqlite> SELECT DISTINCT P.PlaylistId, P.Name
+   ...> FROM Playlist P, PlaylistTrack PT, Track T1
+   ...> WHERE P.PlaylistId = PT.PlaylistId
+   ...> AND PT.TrackId = T1.TrackId
+   ...> GROUP BY T1.Composer
+   ...> HAVING (SELECT COUNT(T2.Composer)
+   ...> FROM Track T2) >= 10
+
+QUESTION 7:
+
+QUESTION 6:
+
+QUESTOIN 8:
+
+QUESTION 9:
+
+sqlite> SELECT C.FirstName, C.LastName, C.PostalCode, I.Total
+   ...> FROM Customer C, Invoice I
+   ...> WHERE C.CustomerId = I.CustomerId
+   ...> AND I.Total > 5.65
+
+QUESTION 10:
+
+sqlite> SELECT E.EmployeeId
+   ...> FROM Employee E
+   ...> EXCEPT
+   ...> SELECT DISTINCT E2.ReportsTo
+   ...> FROM Employee E2

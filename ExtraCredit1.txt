@@ -1,0 +1,53 @@
+Nehemya McCarter-Ribakoff
+ID#: 916571687
+Kulkarni
+CSC 675 / Th 4:00PM
+6 October 2017
+
+Extra Credit Assignment 1
+
+QUESTION 1:
+
+sqlite> SELECT M.Name
+   ...> FROM MediaType M, Track T
+   ...> WHERE T.MediaTypeId = M.MediaTypeId
+   ...> GROUP BY T.MediaTypeId
+   ...> HAVING COUNT (T.MediaTypeId) >= 100
+
+QUESTION 2:
+
+QUESTION 3:
+
+sqlite> SELECT DISTINCT C.FirstName, C.LastName, C.PostalCode, I.Total
+   ...> FROM Customer C, Invoice I, InvoiceLine IL
+   ...> WHERE C.CustomerId = I.CustomerId
+   ...> AND I.InvoiceId = IL.InvoiceId
+   ...> AND I.Total > (SELECT AVG(I2.Total)
+   ...> FROM Invoice I2)
+
+QUESTION 4:
+
+sqlite> SELECT E.EmployeeId, E.FirstName, E.LastName
+   ...> FROM Employee E
+   ...> GROUP BY (E.ReportsTo)
+   ...> HAVING COUNT (E.ReportsTo) >= 2
+
+QUESTION 5:
+
+SELECT DISTINCT A.ArtistId, A.Name
+FROM Artist A, Track T, Album AL, Genre G
+WHERE A.ArtistId = AL.ArtistId
+AND AL.AlbumId = T.AlbumId
+AND T.GenreId = G.GenreId
+AND G.Name = 'Rock'
+
+QUESTION 6:
+
+
+QUESTION 7:
+
+
+sqlite> SELECT DISTINCT C.FirstName, C.LastName, E.FirstName, E.LastName, C.State
+   ...> FROM Customer C, Employee E
+   ...> WHERE C.State = E.State
+   ...> AND C.SupportRepId = E.EmployeeId
